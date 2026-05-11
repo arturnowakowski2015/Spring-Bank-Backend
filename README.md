@@ -1,91 +1,114 @@
-Spring-Bank-Backend is a backend system for a banking application built with Spring Boot and a microservices architecture.
-It includes separate services for authentication, account management, transactions, notifications, service discovery, API gateway routing, and centralized configuration.
-The project uses PostgreSQL databases, RabbitMQ, Liquibase, Eureka, Spring Cloud Config, and JWT/OAuth-related security components.
+# Spring-Bank-Backend
 
-From the repository structure, the main parts are:
+> Backend system for a banking application built with Spring Boot and a microservices architecture.
 
-auth-service — authentication and user-related logic
-account-service — account management
-transaction-service — transaction handling
-transaction-orchestrator — transaction coordination/orchestration
-notification-service — notifications
-gateway — API gateway
-eureka — service discovery
-config-server — centralized config
-common — shared code
-How to run it
-Based on the repo files, the safest local setup is:
+---
 
-1. Install requirements
-You need:
+## Overview
 
-Java 17
-Maven
-Docker
-Docker Compose
-2. Clone the repository
-bash
-git clone https://github.com/arturnowakowski2015/Spring-Bank-Backend.git
-cd Spring-Bank-Backend
-3. Start infrastructure with Docker Compose
-The repository contains a docker-compose.yaml that starts:
+Spring-Bank-Backend includes separate services for:
+- Authentication
+- Account management
+- Transactions
+- Notifications
+- Service discovery
+- API gateway routing
+- Centralized configuration
 
-3 PostgreSQL databases
-RabbitMQ
-Run:
+**Tech stack:** PostgreSQL, RabbitMQ, Liquibase, Eureka, Spring Cloud Config, JWT/OAuth security
 
-bash
-docker compose up -d
-This starts:
+---
 
-PostgreSQL for auth/user DB on port 2345
-PostgreSQL for account DB on port 3214
-PostgreSQL for transaction DB on port 4123
-RabbitMQ on ports 5672 and 15672
-4. Start the Spring services
-You will likely need to run the microservices separately from their own module directories.
+## Repository Structure
 
-A reasonable startup order is:
+- **auth-service** — authentication and user-related logic
+- **account-service** — account management
+- **transaction-service** — transaction handling
+- **transaction-orchestrator** — transaction coordination/orchestration
+- **notification-service** — notifications
+- **gateway** — API gateway
+- **eureka** — service discovery
+- **config-server** — centralized config
+- **common** — shared code
 
-config-server
-eureka
-auth-service
-account-service
-transaction-service
-gateway
-other services like notification-service and transaction-orchestrator
-Example:
+---
 
-bash
-cd config-server
-mvn spring-boot:run
-Then in another terminal:
+## Getting Started
+...existing code...
 
-bash
-cd eureka
-mvn spring-boot:run
-Then:
 
-bash
-cd auth-service
-mvn spring-boot:run
+
+
+
+
+### 1. Install Requirements
+- Java 17
+- Maven
+- Docker
+- Docker Compose
+
+### 2. Clone the Repository
+```bash
 And so on for the other services.
 
+```
+
+### 3. Start Infrastructure with Docker Compose
+The repository contains a `docker-compose.yaml` that starts:
+- 3 PostgreSQL databases
+- RabbitMQ
+
+Run:
+```bash
 Ports found in the configuration
+```
+This starts:
+- PostgreSQL for auth/user DB on port **2345**
+- PostgreSQL for account DB on port **3214**
+- PostgreSQL for transaction DB on port **4123**
+- RabbitMQ on ports **5672** and **15672**
+
+### 4. Start the Spring Services
+You will likely need to run the microservices separately from their own module directories.
+
+**Recommended startup order:**
+1. config-server
+2. eureka
+3. auth-service
+4. account-service
+5. transaction-service
+6. gateway
+7. (optional) notification-service, transaction-orchestrator
+
+**Example:**
+```bash
 From the config files:
 
+```
+In another terminal:
+```bash
 auth-service → 8080
-transaction-service → 8081
-account-service → 8082
-gateway → 9090
-config-server → expected at 8012
-eureka → expected at 8761
-Keycloak/JWK endpoint is referenced at 1111
-Important note
-The project also references additional services that may need to exist for full functionality:
 
-Config Server at http://localhost:8012
-Eureka Server at http://localhost:8761/eureka/
-Keycloak or another identity provider at http://localhost:1111
-So Docker Compose alone is not enough. It only starts databases and RabbitMQ.
-You still need to run the Spring services manually, and some features may require a working Keycloak setup.
+---
+
+## Ports
+| Service                | Port   |
+|------------------------|--------|
+| auth-service           | 8080   |
+| transaction-service    | 8081   |
+| account-service        | 8082   |
+| gateway                | 9090   |
+| config-server          | 8012   |
+| eureka                 | 8761   |
+| Keycloak/JWK endpoint  | 1111   |
+
+---
+
+## Important Notes
+- The project references additional services that may need to exist for full functionality:
+	- Config Server: [http://localhost:8012](http://localhost:8012)
+	- Eureka Server: [http://localhost:8761/eureka/](http://localhost:8761/eureka/)
+	- Keycloak or another identity provider: [http://localhost:1111](http://localhost:1111)
+- Docker Compose alone is **not enough**. It only starts databases and RabbitMQ.
+- You still need to run the Spring services manually.
+- Some features may require a working Keycloak setup.
