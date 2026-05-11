@@ -81,13 +81,25 @@ You will likely need to run the microservices separately from their own module d
 7. (optional) notification-service, transaction-orchestrator
 
 **Example:**
-```bash
-From the config files:
 
-```
-In another terminal:
+To start each service, open a new terminal for each and run:
+
 ```bash
-auth-service → 8080
+cd <service-directory>
+mvn spring-boot:run
+```
+
+For example, to start the config server:
+```bash
+cd config-server
+mvn spring-boot:run
+```
+Then, in a new terminal, start Eureka:
+```bash
+cd eureka
+mvn spring-boot:run
+```
+Repeat for each service in the recommended order.
 
 ---
 
