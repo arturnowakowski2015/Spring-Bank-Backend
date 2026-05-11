@@ -30,14 +30,7 @@ Spring-Bank-Backend includes separate services for:
 - **eureka** — service discovery
 - **config-server** — centralized config
 - **common** — shared code
-
----
-
-## Getting Started
-...existing code...
-
-
-
+ 
 
 
 
@@ -46,10 +39,7 @@ Spring-Bank-Backend includes separate services for:
 - Maven
 - Docker
 - Docker Compose
-
-### 2. Clone the Repository
-```bash
-And so on for the other services.
+ 
 
 ```
 
@@ -57,11 +47,7 @@ And so on for the other services.
 The repository contains a `docker-compose.yaml` that starts:
 - 3 PostgreSQL databases
 - RabbitMQ
-
-Run:
-```bash
-Ports found in the configuration
-```
+ 
 This starts:
 - PostgreSQL for auth/user DB on port **2345**
 - PostgreSQL for account DB on port **3214**
